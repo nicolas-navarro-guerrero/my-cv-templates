@@ -418,6 +418,11 @@
 % makes a resume line with a header and a corresponding text
 % usage: \cvitem[spacing]{header}{text}
 \newcommand*{\cvitem}[3][.25em]{}
+%%*****************************************************************************
+% makes a resume line with a header and a corresponding text, tabular version
+% usage: \cvitem[spacing]{header}{text}
+\newcommand*{\cvitemtab}[3][.25em]{}
+%%*****************************************************************************
 
 % makes a resume line 2 headers and their corresponding text
 % usage: \cvdoubleitem[spacing]{header1}{text1}{header2}{text2}
@@ -431,6 +436,11 @@
 % usage: \cvlistdoubleitem[label]{item1}{item2}
 \newcommand*{\cvlistdoubleitem}[3][\listitemsymbol]{}
 
+%%*****************************************************************************
+% makes a resume line with a header and a corresponding text
+% usage: \cvitem[spacing]{header}{text}
+\newcommand*{\cvitementry}[3][.25em]{}
+%%*****************************************************************************
 % makes a typical resume job / education entry
 % usage: \cventry[spacing]{years}{degree/job title}{institution/employer}{localization}{optionnal: grade/...}{optional: comment/job description}
 \newcommand*{\cventry}[7][.25em]{}

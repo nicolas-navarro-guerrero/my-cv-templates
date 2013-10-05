@@ -4,8 +4,8 @@ Version: 0.1
 Copyright (C) 2013 Nicolas Navarro-Guerrero  
 Contact:  nicolas.navarro.guerrero@gmail.com  
 
-          https://github.com/nicolas-navarro-guerrero
-          http://www.linkedin.com/in/nicolasnavarroguerrero
+      https://github.com/nicolas-navarro-guerrero  
+      http://www.linkedin.com/in/nicolasnavarroguerrero
 
 ============================================================
 ### Overview ###
