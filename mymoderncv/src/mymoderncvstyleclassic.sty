@@ -126,7 +126,7 @@
     \protected@edef\socialsdetails{\socialsdetails\protect\makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
   \newbox{\makecvtitledetailsbox}%
   \savebox{\makecvtitledetailsbox}{%
-    \addressfont\color{color2}%
+    \addressfont\color{color1}%
     \begin{tabular}[b]{@{}r@{}}%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
         \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
@@ -232,6 +232,7 @@
 \renewcommand*{\cvitemwithcomment}[4][.25em]{%
   \savebox{\cvitemwithcommentmainbox}{{\bfseries#3}}%
   \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \ifthenelse{\cvitemwithcommentmainlength > \linewidth}{\setlength{\cvitemwithcommentmainlength}{0.7\linewidth}}{}%
   \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
   \cvitem[#1]{#2}{%
     \begin{minipage}[t]{\cvitemwithcommentmainlength}\bfseries#3\end{minipage}%

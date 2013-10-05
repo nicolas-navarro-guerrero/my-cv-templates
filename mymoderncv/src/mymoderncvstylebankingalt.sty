@@ -1,5 +1,5 @@
 %******************************************************************************
-%\title mymoderncvstylenngstyle.cls
+%\title mymoderncvstylebankingalt.sty
 %\brief
 % 
 % Original by Xavier Danaux (xdanaux@gmail.com)
@@ -34,7 +34,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mymoderncvstylenngstyle}[2013/10/02 v1.0.1 my modern curriculum vitae and letter style scheme: nngstyle]
+\ProvidesPackage{mymoderncvstylebankingalt}[2013/04/29 v1.5.1 my modern curriculum vitae and letter style scheme: banking alternative]
 
 
 %-------------------------------------------------------------------------------
@@ -104,46 +104,42 @@
     \centering%
     % name and title
     \namestyle{\@firstname~\@lastname}%
+    \\[9pt]
     % \isundefined doesn't work on \@title, as LaTeX itself defines \@title
     % (before it possibly gets redefined by \title)
-    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{\@title}}\\
+    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{\@title}}\\[3pt]
     % detailed information
     \addressfont\color{color2}%
     \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomaketitle{\addresssymbol\@addressstreet}%
-      % if \addresstreet is defined, \addresscity and \addresscountry will
-      % always be defined but could be empty
-      \ifthenelse{\equal{\@addresscity}{}}{}{\addtomaketitle[~--~]{\@addresscity}}
+      \ifthenelse{\equal{\@addresscity}{}}{}{\addtomaketitle[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
       \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomaketitle[~--~]{\@addresscountry}}%
       \flushmaketitle\@firstmaketitleelementtrue\\}%
-    % the key holds the phone type (=symbol command prefix), the item holds the number
-    \collectionloop{phones}{
+    \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
       \addtomaketitle{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
     \ifthenelse{\isundefined{\@email}}{}{\addtomaketitle{\emailsymbol\emaillink{\@email}}}%
     \ifthenelse{\isundefined{\@homepage}}{}{\addtomaketitle{\homepagesymbol\httplink{\@homepage}}}%
-    % the key holds the social type (=symbol command prefix), the item holds the link
-    \collectionloop{socials}{
+    \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
       \addtomaketitle{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
     \ifthenelse{\isundefined{\@extrainfo}}{}{\addtomaketitle{\@extrainfo}}%
-    % need to force a \par after this to avoid weird spacing bug at the first
-    % section if no blank line is left after \maketitle
-    \flushmaketitle}\\[2.5em]}
+    \flushmaketitle}\\[2.5em]}% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \maketitle
+
 
 %-------------------------------------------------------------------------------
 %                resume style definition
 %-------------------------------------------------------------------------------
 % fonts
-\renewcommand*{\namefont}{\fontsize{16pt}{8pt}\selectfont\bfseries\upshape}
-\renewcommand*{\titlefont}{\fontsize{14pt}{8pt}\selectfont\mdseries\slshape}
-\renewcommand*{\addressfont}{\fontsize{10pt}{13pt}\mdseries\upshape}
-\renewcommand*{\quotefont}{\fontsize{12pt}{1em}\slshape}
-\renewcommand*{\sectionfont}{\fontsize{14pt}{1em}\bfseries\upshape}
-\renewcommand*{\subsectionfont}{\fontsize{12pt}{1em}\upshape\fontseries{sb}\selectfont}
+\renewcommand*{\namefont}{\Huge\bfseries\upshape}
+\renewcommand*{\titlefont}{\Huge\mdseries\upshape}
+\renewcommand*{\addressfont}{\normalsize\mdseries\upshape}
+\renewcommand*{\quotefont}{\large\slshape}
+\renewcommand*{\sectionfont}{\Large\bfseries\upshape}
+\renewcommand*{\subsectionfont}{\large\upshape\fontseries{sb}\selectfont}
 \renewcommand*{\hintfont}{\bfseries}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color0}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color1}{#1}}}
 \renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color0}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color1}{#1}}}
 \renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
 \renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{color1}{#1}}}
 \renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{color1}{#1}}}
@@ -152,11 +148,10 @@
 % lengths
 \newlength{\quotewidth}
 \newlength{\hintscolumnwidth}
-\setlength{\hintscolumnwidth}{0.175\textwidth}%0.3
+\setlength{\hintscolumnwidth}{0.3\textwidth}%
 \newlength{\separatorcolumnwidth}
 \setlength{\separatorcolumnwidth}{0.025\textwidth}%
 \newlength{\maincolumnwidth}
-\newlength{\itemdescriptioncolumnwidth}
 \newlength{\doubleitemcolumnwidth}
 \newlength{\listitemsymbolwidth}
 \settowidth{\listitemsymbolwidth}{\listitemsymbol}
@@ -176,87 +171,20 @@
   % listdoubleitem lengths
   \setlength{\listdoubleitemmaincolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemmaincolumnwidth}{0.5\listdoubleitemmaincolumnwidth}%
-  % itemdescription lengths
-  \setlength{\itemdescriptioncolumnwidth}{\maincolumnwidth-\separatorcolumnwidth-\hintscolumnwidth}%
   % fancyhdr lengths
   \renewcommand{\headwidth}{\textwidth}%
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
-%%-----------------------------------------------------------------------------
-%%-----------------------------------------------------------------------------
-% optional maketitle width to force a certain width (if set to 0pt, the width
-% is calculated automatically)
-\newlength{\makecvtitlenamewidth}
-\setlength{\makecvtitlenamewidth}{0pt}% dummy value
 \renewcommand*{\makecvtitle}{%
   % recompute lengths (in case we are switching from letter to resume, or vice versa)
   \recomputecvlengths%
-  % optional detailed information (pre-rendering)
-  \def\phonesdetails{}%
-  % the key holds the phone type (=symbol command prefix), the item holds the number
-  \collectionloop{phones}{
-    \protected@edef\phonesdetails{\phonesdetails\protect\makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
-  \def\socialsdetails{}%
-  % the key holds the social type (=symbol command prefix), the item holds the link
-  \collectionloop{socials}{%
-    \protected@edef\socialsdetails{\socialsdetails\protect\makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
-  \newbox{\makecvtitledetailsbox}%
-  \savebox{\makecvtitledetailsbox}{%
-    \addressfont\color{color1}%
-    \begin{tabular}[b]{@{}l@{}}%
-      \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\hspace{-4pt}\@addressstreet%
-        % if \addresstreet is defined, \addresscity and addresscountry will
-        % always be defined but could be empty
-        \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}
-        \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
-      % needs to be pre-rendered as loops and tabulars seem to conflict
-      \phonesdetails
-      \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
-      \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
-      % needs to be pre-rendered as loops and tabulars seem to conflict
-      \socialsdetails
-      \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}%
-    \end{tabular}
-  }%
-  % optional photo (pre-rendering)
-  \newbox{\makecvtitlepicturebox}%
-  \savebox{\makecvtitlepicturebox}{%
-    \ifthenelse{\isundefined{\@photo}}%
-    {}%
-    {%
-      \hspace*{\separatorcolumnwidth}%
-      \color{color1}%
-      \setlength{\fboxrule}{\@photoframewidth}%
-      \ifdim\@photoframewidth=0pt%
-        \setlength{\fboxsep}{0pt}\fi%
-      \includegraphics[width=\@photowidth]{\@photo}}}%
-  % name and title
-  \newlength{\makecvtitledetailswidth}\settowidth{\makecvtitledetailswidth}{\usebox{\makecvtitledetailsbox}}%
-  \newlength{\makecvtitlepicturewidth}\settowidth{\makecvtitlepicturewidth}{\usebox{\makecvtitlepicturebox}}%
-  % check for dummy value (equivalent to \ifdim\makecvtitlenamewidth=0pt)
-  \ifthenelse{\lengthtest{\makecvtitlenamewidth=0pt}}
-    {\setlength{\makecvtitlenamewidth}{\textwidth-\makecvtitledetailswidth-\makecvtitlepicturewidth}}%
-    {}%
-  \begin{minipage}[b]{\makecvtitlenamewidth}%
-    \namestyle{\@firstname\ \@lastname}%
-    \ifthenelse{\equal{\@title}{}}{}{\\[3pt]\titlestyle{\@title}\\[6pt]}%
-    % optional detailed information (rendering)
-    \hfill%
-    \usebox{\makecvtitledetailsbox}
-  \end{minipage}%
-  \hfill%
-  % optional photo (rendering)
-  \usebox{\makecvtitlepicturebox}\\[2.5em]%
+  \maketitle%
   % optional quote
   \ifthenelse{\isundefined{\@quote}}%
     {}%
     {{\centering\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}\\[2.5em]}}%
-  \par}
-% to avoid weird spacing bug at the first section if no blank line is left
-% after \makecvtitle
-%%-----------------------------------------------------------------------------
-%%-----------------------------------------------------------------------------
+  \par}% to avoid weird spacing bug at the first section if no blank line is left after \maketitle}
 
 \RenewDocumentCommand{\section}{sm}{%
   \par\addvspace{2.5ex}%
@@ -266,12 +194,7 @@
   {\color{color1}\hrule}%
   \par\nobreak\addvspace{1ex}\@afterheading}
 
-%%-----------------------------------------------------------------------------
-%%-----------------------------------------------------------------------------
-% different subsectionfills will not be perfectly aligned, but remaining space
-% at the end of the fill will be distributed evenly between leaders, so it will
-% be barely visible
-\newcommand{\subsectionfill}{\xleaders\hbox to 0.35em{\scriptsize.}\hfill}
+\newcommand{\subsectionfill}{\xleaders\hbox to 0.35em{\scriptsize.}\hfill}% different subsectionfills will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible
 \RenewDocumentCommand{\subsection}{sm}{%
   \par\addvspace{1ex}%
   \phantomsection{}%
@@ -279,61 +202,35 @@
   \strut\subsectionstyle{#2}{\color{color1}{\subsectionfill}}%
   \par\nobreak\addvspace{0.5ex}\@afterheading}
 
-%%-----------------------------------------------------------------------------
-%% Indirectly influences References and entry
 \renewcommand*{\cvitem}[3][.25em]{%
   \ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }{#3}%
   \par\addvspace{#1}}
 
-%% Thesis and Hobbies Indirectly influences References and entry
-\renewcommand*{\cvitemtab}[3][.25em]{%
-  \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\itemdescriptioncolumnwidth}@{}}%
-    \raggedleft\hintstyle{#2} &{#3}%
-  \end{tabular}%
-  \par\addvspace{#1}}
-
-%%-----------------------------------------------------------------------------
-%% Computer skills
 \renewcommand*{\cvdoubleitem}[5][.25em]{%
   \begin{minipage}[t]{\doubleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
-  % fill of \separatorcolumnwidth
-  \hfill
+  \hfill% fill of \separatorcolumnwidth
   \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}%
   \par\addvspace{#1}}
 
-%%-----------------------------------------------------------------------------
-%% Extra 1
 \renewcommand*{\cvlistitem}[2][.25em]{%
   \listitemsymbol\begin{minipage}[t]{\listitemmaincolumnwidth}#2\end{minipage}%
   \par\addvspace{#1}}
 
-%%-----------------------------------------------------------------------------
-%% Extra 2
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
-  \par\addvspace{#1}\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
-  % fill of \separatorcolumnwidth
-  \hfill
+  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
   \ifthenelse{\equal{#3}{}}%
     {}%
-    {\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#3\end{minipage}}}
+    {\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#3\end{minipage}}}}
 
-%%-----------------------------------------------------------------------------
-%% Laboral Experience and Education
-\renewcommand*{\cvitementry}[3][.25em]{%
-  \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\itemdescriptioncolumnwidth}@{}}%
-    \raggedleft\hintstyle{#2} &{#3}%
-  \end{tabular}%
+\renewcommand*{\cventry}[7][.25em]{
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}%
+	  {\bfseries #4} & {\bfseries #5} \\%
+	  {\itshape #3\ifthenelse{\equal{#6}{}}{}{, #6}} & {\itshape #2}\\%
+  \end{tabular*}%
+  \ifx&#7&%
+    \else{\\\vbox{\small#7}}\fi%
   \par\addvspace{#1}}
-
-\renewcommand*{\cventry}[7][.25em]{%
-  \cvitementry[#1]{#2}{%
-    {\bfseries#3}%
-    \ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}%
-    \ifthenelse{\equal{#5}{}}{}{, #5}%
-    \ifthenelse{\equal{#6}{}}{}{, #6}%
-    .\strut%
-    \ifx&#7&%
-      \else{\newline{}\begin{minipage}[t]{\linewidth}\small#7\end{minipage}}\fi}}
 
 %%-----------------------------------------------------------------------------
 %% Language
@@ -342,17 +239,15 @@
 \newlength{\cvitemwithcommentmainlength}
 \newlength{\cvitemwithcommentcommentlength}
 \renewcommand*{\cvitemwithcomment}[4][.25em]{%
-  \savebox{\cvitemwithcommentmainbox}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: #3 #1}}%
+  \savebox{\cvitemwithcommentmainbox}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }#3}%
   \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
   \ifthenelse{\cvitemwithcommentmainlength > \linewidth}{\setlength{\cvitemwithcommentmainlength}{0.8\linewidth}}{}%
   \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
   \begin{minipage}[t]{\cvitemwithcommentmainlength}\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }#3\end{minipage}%
-  % fill of \separatorcolumnwidth
-  \hfill
+  \hfill% fill of \separatorcolumnwidth
   \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
   \par\addvspace{#1}}
 
-%%-----------------------------------------------------------------------------
 \renewenvironment{thebibliography}[1]%
   {%
     \bibliographyhead{\refname}%
@@ -418,6 +313,7 @@
     \vfill%
     {\color{color2}\itshape\enclname: \@enclosure}}}
 
+
 \endinput
 
-%% end of file `mymoderncvstylenngstyle.sty'.
+%% end of file `mymoderncvstylebanking.sty'.
