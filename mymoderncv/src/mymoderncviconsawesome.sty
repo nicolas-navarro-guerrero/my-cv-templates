@@ -1,0 +1,73 @@
+%******************************************************************************
+%\title mymoderncviconsawesome.sty
+%\brief
+% 
+% Original by Xavier Danaux (xdanaux@gmail.com)
+%             http://www.ctan.org/pkg/moderncv
+% Copyright (C) 2013 Nicolas Navarro-Guerrero
+% Contact:	nicolas.navarro.guerrero@gmail.com
+%		https://github.com/nicolas-navarro-guerrero/
+% Created in: October 2013
+% Last Modification by: Nicolas Navarro-Guerrero
+% Last Modification in: October 2013
+%
+% LICENSE:
+%  This file is part of
+%  "my-cv-templates"
+%
+%  "my-cv-templates"
+%  is free software: you can redistribute it and/or modify it under the terms of
+%  the GNU General Public License as published by the Free Software Foundation,
+%  either version 3 of the License, or (at your option) any later version.
+%
+%  "my-cv-templates"
+%  is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+%  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+%  PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%
+%  You should have received a copy of the GNU General Public License along with
+%  "my-cv-templates".
+%  If not, see <http://www.gnu.org/licenses/>.
+%******************************************************************************
+
+%-------------------------------------------------------------------------------
+%                identification
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mymoderncviconsawesome}[2013/04/29 v1.5.1 my modern curriculum vitae and letter icons: awesome]
+% XeTeX or LuaTeX is needed to be able to use fontspec and fontawesome
+\ifxetexorluatex
+
+%-------------------------------------------------------------------------------
+%                required packages
+%-------------------------------------------------------------------------------
+% Font Awesome font
+\RequirePackage{fontawesome}
+
+%-------------------------------------------------------------------------------
+%                symbols definition
+%-------------------------------------------------------------------------------
+\renewcommand*{\labelitemi}          {\strut\textcolor{color1}{\tiny\faCircleBlank}}
+%\renewcommand*{\labelitemii}         {\strut\textcolor{color1}{\large\bfseries-}}            % no change from default in mymoderncv.cls
+%\renewcommand*{\labelitemiii}        {\strut\textcolor{color1}{\rmfamily\textperiodcentered}}% no change from default in mymoderncv.cls
+%\renewcommand*{\labelitemiv}         {\labelitemiii}                                         % no change from default in mymoderncv.cls
+
+\renewcommand*{\addresssymbol}       {}
+\renewcommand*{\mobilephonesymbol}   {{\Large\faMobilePhone}~}
+\renewcommand*{\fixedphonesymbol}    {\faPhone~}
+\renewcommand*{\faxphonesymbol}      {\faPrint~}              % alternative: \faFileAlt
+\renewcommand*{\emailsymbol}         {\faEnvelope~}           % alternative: \faInbox
+\renewcommand*{\homepagesymbol}      {\faGlobe~}              % alternative: \faHome
+\renewcommand*{\linkedinsocialsymbol}{\faLinkedinSign~}       % alternative: \faLinkedin
+\renewcommand*{\twittersocialsymbol} {\faTwitter~}
+\renewcommand*{\githubsocialsymbol}  {\faGithub~}
+
+
+% if XeTeX or LuaTeX is not used, load the marvosym icon set instead
+\else
+  \typeout{WARNING: to use the awesome icon set, please use XeTeX or LuaTeX to compile your document; switching to the marvosym icon set.}
+  \RequirePackage{mymoderncviconsmarvosym}
+\fi
+\endinput
+
+%% end of file `mymoderncviconsmarvosym.sty'.

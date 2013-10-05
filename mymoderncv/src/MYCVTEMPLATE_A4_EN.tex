@@ -1,0 +1,203 @@
+%******************************************************************************
+%\title MYCVTEMPLATE_A4_EN.tex
+%\brief
+% 
+% Original by Xavier Danaux (xdanaux@gmail.com)
+%             http://www.ctan.org/pkg/moderncv
+% Derivated by 2013 Nicolas Navarro-Guerrero
+% Contact:	nicolas.navarro.guerrero@gmail.com
+%		https://github.com/nicolas-navarro-guerrero/
+% Created in: October 2013
+% Last Modification by: Nicolas Navarro-Guerrero
+% Last Modification in: October 2013
+%
+% LICENSE:
+%  This file is part of
+%  "my-cv-templates"
+%
+%  "my-cv-templates"
+%  is free software: you can redistribute it and/or modify it under the terms of
+%  the GNU General Public License as published by the Free Software Foundation,
+%  either version 3 of the License, or (at your option) any later version.
+%
+%  "my-cv-templates"
+%  is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+%  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+%  PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%
+%  You should have received a copy of the GNU General Public License along with
+%  "my-cv-templates".
+%  If not, see <http://www.gnu.org/licenses/>.
+%******************************************************************************
+
+% possible options include font size ('10pt', '11pt' and '12pt'),
+% paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper',
+% 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[11pt,a4paper,sans]{mymoderncv}
+
+% my moderncv themes
+% style options are 'casual' (default), 'classic', 'oldstyle', 'banking'
+\mymoderncvstyle{banking}
+% color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey',
+\mymoderncvcolor{blue}
+% to set the default font; use '\sfdefault' for the default sans serif font,
+% '\rmdefault' for the default roman one, or any tex font name
+%\renewcommand{\familydefault}{\sfdefault}
+% uncomment to suppress automatic page numbering for CVs longer than one page
+%\nopagenumbers{}
+
+% character encoding
+% if you are not using xelatex ou lualatex, replace by the encoding you are using
+\usepackage[utf8]{inputenc}
+
+% adjust the page margins
+%\usepackage[scale=0.75]{geometry}
+\usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+% if you want to change the width of the column with the dates
+%\setlength{\hintscolumnwidth}{3cm}
+% for the 'classic' style, if you want to force the width allocated to your
+% name and avoid line breaks. be careful though, the length is normally
+% calculated to avoid any overlap with your personal info; use this at your own
+% typographical risks...
+%\setlength{\makecvtitlenamewidth}{10cm}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% PERSONAL DATA
+\firstname{John}
+\familyname{Doe}
+%\name{Nicol\'as}{Navarro-Guerrero}
+% optional, remove / comment the line if not wanted
+\title{Resum\'e title}
+% optional, remove / comment the line if not wanted; the "postcode city" and
+% "country" arguments can be omitted or provided empty
+\address{street and number}{postcode city}{country}
+% optional, remove / comment the line if not wanted; the optional "type" of the
+% phone can be "mobile" (default), "fixed" or "fax"
+\phone[mobile]{+1~(234)~567~890}
+% OPTIONAL FIELDS, remove / comment the line if not wanted
+\email{john@doe.org}
+\homepage{www.johndoe.com}
+\extrainfo{additional information (nationality)}
+% '64pt' is the height the picture must be resized to, 0.4pt is the thickness
+% of the frame around it (put it to 0pt for no frame) and 'picture' is the
+% name of the picture file
+%\photo[70pt][0.4pt]{picture.jpg}
+\quote{Some quote}
+
+% to show numerical labels in the bibliography (default is to show no labels);
+% only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+% CONSIDER REPLACING THE ABOVE BY THIS
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%------------------------------------------------------------------------------
+%            content
+%------------------------------------------------------------------------------
+\begin{document}
+%------------------------------------------------------------------------------
+%-----       resume       -----------------------------------------------------
+%------------------------------------------------------------------------------
+\makecvtitle
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Education}
+% arguments 3 to 6 can be left empty
+\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description: This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Master thesis}
+\cvitem{title}{\emph{Title}}
+\cvitem{supervisors}{Supervisors}
+\cvitem{description}{This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Experience}
+\subsection{Vocational}
+\cventry{year--year}{Job title}{Employer}{City}{}{General description no longer than 1--2 lines.\newline{}
+Detailed achievements:
+\begin{itemize}
+\item Achievement 1;
+\item Achievement 2, with sub-achievements:
+  \begin{itemize}
+  \item Sub-achievement (a);
+  \item Sub-achievement (b), with sub-sub-achievements (don't do this!);
+    \begin{itemize}
+    \item Sub-sub-achievement i;
+    \item Sub-sub-achievement ii;
+    \item Sub-sub-achievement iii;
+    \end{itemize}
+  \item Sub-achievement (c);
+  \end{itemize}
+\item Achievement 3.
+\end{itemize}}
+\cventry{year--year}{Job title}{Employer}{City}{}{Description line 1\newline{}Description line 2}
+\subsection{Miscellaneous}
+\cventry{year--year}{Job title}{Employer}{City}{}{This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Languages}
+\cvitemwithcomment{Language 1}{Skill level}{This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+\cvitemwithcomment{Language 2}{This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}{Comment}
+\cvitemwithcomment{Language 3}{Skill level}{Comment}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Computer skills}
+\cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
+\cvdoubleitem{category 2}{XXX, YYY, ZZZ}{category 5}{XXX, YYY, ZZZ}
+\cvdoubleitem{category 3}{This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}{}{}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Interests}
+\cvitem{hobby 1}{Description}
+\cvitem{hobby 2}{This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+\cvitem{hobby 3}{Description}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Extra 1}
+\cvlistitem{Item 1}
+\cvlistitem{Item 2}
+\cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Extra 2}
+\cvlistdoubleitem{Item 1}{Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
+\cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
+\cvlistdoubleitem{Item 3. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}{}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{References}
+\begin{cvcolumns}
+  \cvcolumn{Category 1}{\begin{itemize}\item Person 1\item Person 2\item Person 3\end{itemize}}
+  \cvcolumn{Category 2}{Amongst others:\begin{itemize}\item Person 1, and\item Person 2\end{itemize}(more upon request)}
+  \cvcolumn[0.5]{All the rest \& some more}{\textit{That} person, and \textbf{those} also (all available upon request).}
+\end{cvcolumns}
+
+% Publications from a BibTeX file without multibib
+% CONSIDER MERGING WITH PREAMBLE PART
+%  for numerical labels:
+%      \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%  to redefine the heading string ("Publications"):
+%      \renewcommand{\refname}{Articles}
+\nocite{*}
+\bibliographystyle{plain}
+% 'publications' is the name of a BibTeX file
+\bibliography{publications}
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+% 'publications' is the name of a BibTeX file
+%\bibliographybook{publications}
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+% 'publications' is the name of a BibTeX file
+%\bibliographymisc{publications}
+%\clearpage
+\end{document}
