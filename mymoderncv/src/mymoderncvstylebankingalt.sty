@@ -1,5 +1,5 @@
 %******************************************************************************
-%\title mymoderncvstylebankingalt.sty
+%\title mymoderncvstylebanking.sty
 %\brief
 % 
 % Original by Xavier Danaux (xdanaux@gmail.com)
@@ -30,21 +30,20 @@
 %  If not, see <http://www.gnu.org/licenses/>.
 %******************************************************************************
 
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %                identification
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mymoderncvstylebankingalt}[2013/04/29 v1.5.1 my modern curriculum vitae and letter style scheme: banking alternative]
+\ProvidesPackage{mymoderncvstylebanking}[2013/04/29 v1.5.1 my modern curriculum vitae and letter style scheme: banking]
 
-
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %                required packages
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 
 
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %                overall style definition
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 % fonts
 %\ifxetexorluatex
 %  \setmainfont{Tex-Gyre Pagella}
@@ -66,7 +65,9 @@
 
 % commands
 \newcommand*{\maketitlesymbol}{%
-    {~~~{\rmfamily\textbullet}~~~}}% the \rmfamily is required to force Latin Modern fonts when using sans serif, as OMS/lmss/m/n is not defined and gets substituted by OMS/cmsy/m/n
+    % the \rmfamily is required to force Latin Modern fonts when using sans
+    % serif, as OMS/lmss/m/n is not defined and gets substituted by OMS/cmsy/m/n
+    {~~~{\rmfamily\textbullet}~~~}}%
 %   internal command to add an element to the footer
 %   it collects the elements in a temporary box, and checks when to flush the box
 \newsavebox{\maketitlebox}%
@@ -103,11 +104,10 @@
   \parbox{\maketitlewidth}{%
     \centering%
     % name and title
-    \namestyle{\@firstname~\@lastname}%
-    \\[9pt]
+    \namestyle{\@firstname~\@lastname\\[9pt]}%
     % \isundefined doesn't work on \@title, as LaTeX itself defines \@title
     % (before it possibly gets redefined by \title)
-    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{\@title}}\\[3pt]
+    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{\@title}}\\
     % detailed information
     \addressfont\color{color2}%
     \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomaketitle{\addresssymbol\@addressstreet}%
@@ -176,6 +176,7 @@
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
+%%-----------------------------------------------------------------------------
 \renewcommand*{\makecvtitle}{%
   % recompute lengths (in case we are switching from letter to resume, or vice versa)
   \recomputecvlengths%
@@ -186,6 +187,8 @@
     {{\centering\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}\\[2.5em]}}%
   \par}% to avoid weird spacing bug at the first section if no blank line is left after \maketitle}
 
+%%-----------------------------------------------------------------------------
+%% \section{Title}
 \RenewDocumentCommand{\section}{sm}{%
   \par\addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
@@ -194,7 +197,12 @@
   {\color{color1}\hrule}%
   \par\nobreak\addvspace{1ex}\@afterheading}
 
-\newcommand{\subsectionfill}{\xleaders\hbox to 0.35em{\scriptsize.}\hfill}% different subsectionfills will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible
+%%-----------------------------------------------------------------------------
+% different subsectionfills will not be perfectly aligned, but remaining space
+% at the end of the fill will be distributed evenly between leaders, so it
+% will be barely visible
+%% \subsection{Title}
+\newcommand{\subsectionfill}{\xleaders\hbox to 0.35em{\scriptsize.}\hfill}%
 \RenewDocumentCommand{\subsection}{sm}{%
   \par\addvspace{1ex}%
   \phantomsection{}%
@@ -202,27 +210,44 @@
   \strut\subsectionstyle{#2}{\color{color1}{\subsectionfill}}%
   \par\nobreak\addvspace{0.5ex}\@afterheading}
 
+%%-----------------------------------------------------------------------------
+%% Honors and Awards Hobbies, Skills
+%% \cvitem{hobby 1}{Description}
 \renewcommand*{\cvitem}[3][.25em]{%
   \ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }{#3}%
   \par\addvspace{#1}}
 
+%%-----------------------------------------------------------------------------
+%% Computer skills
+%% \cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
 \renewcommand*{\cvdoubleitem}[5][.25em]{%
   \begin{minipage}[t]{\doubleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
   \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}%
   \par\addvspace{#1}}
 
+%%-----------------------------------------------------------------------------
+%% Extra 1
+%% \cvlistitem{Item 1}
 \renewcommand*{\cvlistitem}[2][.25em]{%
   \listitemsymbol\begin{minipage}[t]{\listitemmaincolumnwidth}#2\end{minipage}%
   \par\addvspace{#1}}
 
+%%-----------------------------------------------------------------------------
+%% Extra 2
+%% \cvlistdoubleitem{Item 1}{Item 2}
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
   \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
-  \hfill% fill of \separatorcolumnwidth
+  % fill of \separatorcolumnwidth
+  \hfill%
   \ifthenelse{\equal{#3}{}}%
     {}%
     {\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#3\end{minipage}}}}
 
+%%-----------------------------------------------------------------------------
+%% Laboral Experience and Education
+%%               1         2          3       4    5               6
+%% \cventry{year--year}{Job title}{Employer}{City}{}{Description line 1\newline{}Description line 2}
 \renewcommand*{\cventry}[7][.25em]{
   \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}%
 	  {\bfseries #4} & {\bfseries #5} \\%
@@ -242,12 +267,14 @@
   \savebox{\cvitemwithcommentmainbox}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }#3}%
   \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
   \ifthenelse{\cvitemwithcommentmainlength > \linewidth}{\setlength{\cvitemwithcommentmainlength}{0.8\linewidth}}{}%
-  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  %\setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-0.375\textwidth}%
   \begin{minipage}[t]{\cvitemwithcommentmainlength}\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }#3\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
   \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
   \par\addvspace{#1}}
 
+%%-----------------------------------------------------------------------------
 \renewenvironment{thebibliography}[1]%
   {%
     \bibliographyhead{\refname}%
@@ -311,8 +338,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfill%
-    {\color{color2}\itshape\enclname: \@enclosure}}}
-
+    {\color{color1}\itshape\enclname: \@enclosure}}}
 
 \endinput
 

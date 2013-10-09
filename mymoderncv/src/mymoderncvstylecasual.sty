@@ -177,7 +177,7 @@
     \fancyfoot[c]{%
       \parbox[b]{\footerwidth}{%
         \centering%
-        \addressfont\color{color2}%
+        \addressfont\color{color1}%
         \vspace{\baselineskip}% forces a white line to ensure space between main text and footer (as footer height can't be known in advance)
         \vspace{-\baselineskip}% to cancel out the extra vertical space taken by the name (below) and ensure perfect alignment of letter and cv footers
         \strut{\bfseries\upshape\@firstname~\@lastname}\\% the \strut is required to ensure the line is exactly \baselineskip tall
@@ -202,7 +202,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
-    {\color{color2}\itshape\enclname: \@enclosure}}%
+    {\color{color1}\itshape\enclname: \@enclosure}}%
     \vfil}
 
 

@@ -37,9 +37,9 @@
 \ProvidesPackage{mymoderncvstyleclassic}[2013/04/29 v1.5.1 my modern curriculum vitae and letter style scheme: classic]
 
 
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %                required packages
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 % Latin Modern fonts
 %\ifxetexorluatex
 %  \setmainfont{Latin Modern Roman}
@@ -52,18 +52,18 @@
 %\fi
 
 
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %                overall style definition
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 % symbols
 \mymoderncvicons{marvosym}
 
 
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %                resume style definition
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 % fonts
-\renewcommand*{\namefont}{\fontsize{34}{36}\mdseries\upshape}
+\renewcommand*{\namefont}{\fontsize{27}{36}\mdseries\upshape}
 \renewcommand*{\titlefont}{\LARGE\mdseries\slshape}
 \renewcommand*{\addressfont}{\small\mdseries\slshape}
 \renewcommand*{\quotefont}{\large\slshape}
@@ -111,7 +111,10 @@
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
-% optional maketitle width to force a certain width (if set to 0pt, the width is calculated automatically)
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+% optional maketitle width to force a certain width (if set to 0pt, the width
+% is calculated automatically)
 \newlength{\makecvtitlenamewidth}
 \setlength{\makecvtitlenamewidth}{0pt}% dummy value
 \renewcommand*{\makecvtitle}{%
@@ -119,22 +122,28 @@
   \recomputecvlengths%
   % optional detailed information (pre-rendering)
   \def\phonesdetails{}%
-  \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+  % the key holds the phone type (=symbol command prefix), the item holds the number
+  \collectionloop{phones}{%
     \protected@edef\phonesdetails{\phonesdetails\protect\makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
   \def\socialsdetails{}%
-  \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+  % the key holds the social type (=symbol command prefix), the item holds the link
+  \collectionloop{socials}{%
     \protected@edef\socialsdetails{\socialsdetails\protect\makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
   \newbox{\makecvtitledetailsbox}%
   \savebox{\makecvtitledetailsbox}{%
     \addressfont\color{color1}%
     \begin{tabular}[b]{@{}r@{}}%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
-        \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
+        % if \addresstreet is defined, \addresscity and addresscountry will
+        % always be defined but could be empty
+        \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}%
         \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
-      \phonesdetails% needs to be pre-rendered as loops and tabulars seem to conflict
+      % needs to be pre-rendered as loops and tabulars seem to conflict      
+      \phonesdetails%
       \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
       \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
-      \socialsdetails% needs to be pre-rendered as loops and tabulars seem to conflict
+      % needs to be pre-rendered as loops and tabulars seem to conflict
+      \socialsdetails%
       \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}%
     \end{tabular}
   }%
@@ -153,7 +162,8 @@
   % name and title
   \newlength{\makecvtitledetailswidth}\settowidth{\makecvtitledetailswidth}{\usebox{\makecvtitledetailsbox}}%
   \newlength{\makecvtitlepicturewidth}\settowidth{\makecvtitlepicturewidth}{\usebox{\makecvtitlepicturebox}}%
-  \ifthenelse{\lengthtest{\makecvtitlenamewidth=0pt}}% check for dummy value (equivalent to \ifdim\makecvtitlenamewidth=0pt)
+  % check for dummy value (equivalent to \ifdim\makecvtitlenamewidth=0pt)
+  \ifthenelse{\lengthtest{\makecvtitlenamewidth=0pt}}%
     {\setlength{\makecvtitlenamewidth}{\textwidth-\makecvtitledetailswidth-\makecvtitlepicturewidth}}%
     {}%
   \begin{minipage}[b]{\makecvtitlenamewidth}%
@@ -162,15 +172,20 @@
   \end{minipage}%
   \hfill%
   % optional detailed information (rendering)
-  \llap{\usebox{\makecvtitledetailsbox}}% \llap is used to suppress the width of the box, allowing overlap if the value of makecvtitlenamewidth is forced
+  % \llap is used to suppress the width of the box, allowing overlap if the
+  % value of makecvtitlenamewidth is forced
+  \llap{\usebox{\makecvtitledetailsbox}}%
   % optional photo (rendering)
   \usebox{\makecvtitlepicturebox}\\[2.5em]%
   % optional quote
   \ifthenelse{\isundefined{\@quote}}%
     {}%
     {{\centering\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}\\[2.5em]}}%
-  \par}% to avoid weird spacing bug at the first section if no blank line is left after \makecvtitle
+  \par}%
+  % to avoid weird spacing bug at the first section if no blank line is left after \makecvtitle
 
+%%-----------------------------------------------------------------------------
+%% \section{Title}
 \newlength{\baseletterheight}
 \settoheight{\baseletterheight}{\sectionstyle{o}}
 \setlength{\baseletterheight}{\baseletterheight-0.95ex}
@@ -181,8 +196,11 @@
   \parbox[t]{\hintscolumnwidth}{\strut\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{\hintscolumnwidth}{0.95ex}}}%
   \hspace{\separatorcolumnwidth}%
   \parbox[t]{\maincolumnwidth}{\strut\sectionstyle{#2}}%
-  \par\nobreak\addvspace{1ex}\@afterheading}% to avoid a pagebreak after the heading
+  % to avoid a pagebreak after the heading
+  \par\nobreak\addvspace{1ex}\@afterheading}%
 
+%%-----------------------------------------------------------------------------
+%% \subsection{Title}
 \RenewDocumentCommand{\subsection}{sm}{%
   \par\addvspace{1ex}%
   \phantomsection{}% reset the anchor for hyperrefs
@@ -192,12 +210,17 @@
   \end{tabular}%
   \par\nobreak\addvspace{0.5ex}\@afterheading}% to avoid a pagebreak after the heading
 
+%%-----------------------------------------------------------------------------
+%% \cvitem{hobby 1}{Description}
 \renewcommand*{\cvitem}[3][.25em]{%
   \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
     \raggedleft\hintstyle{#2} &{#3}%
   \end{tabular}%
   \par\addvspace{#1}}
 
+%%-----------------------------------------------------------------------------
+%% Computer skills
+%% \cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
 \renewcommand*{\cvdoubleitem}[5][.25em]{%
  \cvitem[#1]{#2}{%
    \begin{minipage}[t]{\doubleitemmaincolumnwidth}#3\end{minipage}%
@@ -206,9 +229,15 @@
    \hspace*{\separatorcolumnwidth}%
    \begin{minipage}[t]{\doubleitemmaincolumnwidth}#5\end{minipage}}}
 
+%%-----------------------------------------------------------------------------
+%% Extra 1
+%% \cvlistitem{Item 1}
 \renewcommand*{\cvlistitem}[2][.25em]{%
   \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listitemmaincolumnwidth}#2\end{minipage}}}
 
+%%-----------------------------------------------------------------------------
+%% Extra 2
+%% \cvlistdoubleitem{Item 1}{Item 2}
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
   \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
@@ -216,6 +245,10 @@
     {}%
     {\listitemsymbol\begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#3\end{minipage}}}}
 
+%%-----------------------------------------------------------------------------
+%% Laboral Experience and Education
+%%               1         2          3       4    5               6
+%% \cventry{year--year}{Job title}{Employer}{City}{}{Description line 1\newline{}Description line 2}
 \renewcommand*{\cventry}[7][.25em]{%
   \cvitem[#1]{#2}{%
     {\bfseries#3}%
@@ -226,6 +259,9 @@
     \ifx&#7&%
       \else{\newline{}\begin{minipage}[t]{\linewidth}\small#7\end{minipage}}\fi}}
 
+%%-----------------------------------------------------------------------------
+%% Language
+%% \cvitemwithcomment{Language 3}{Skill level}{Comment}
 \newbox{\cvitemwithcommentmainbox}
 \newlength{\cvitemwithcommentmainlength}
 \newlength{\cvitemwithcommentcommentlength}
@@ -233,12 +269,14 @@
   \savebox{\cvitemwithcommentmainbox}{{\bfseries#3}}%
   \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
   \ifthenelse{\cvitemwithcommentmainlength > \linewidth}{\setlength{\cvitemwithcommentmainlength}{0.7\linewidth}}{}%
-  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
-  \cvitem[#1]{#2}{%
-    \begin{minipage}[t]{\cvitemwithcommentmainlength}\bfseries#3\end{minipage}%
+%  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-0.225\textwidth}%
+  \cvitem[#1]{\bfseries#2}{%
+    \begin{minipage}[t]{\cvitemwithcommentmainlength}#3\end{minipage}%
     \hfill% fill of \separatorcolumnwidth
     \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}}}
 
+%%-----------------------------------------------------------------------------
 \renewenvironment{thebibliography}[1]%
   {%
     \bibliographyhead{\refname}%
@@ -263,7 +301,6 @@
     \end{list}%
   }
 
-
 %-------------------------------------------------------------------------------
 %                letter style definition
 %-------------------------------------------------------------------------------
@@ -279,7 +316,7 @@
   \hfill%
   \begin{minipage}{.5\textwidth}%
     \raggedleft%
-    \addressfont\textcolor{color2}{%
+    \addressfont\textcolor{color1}{%
       {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
         \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
@@ -314,7 +351,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfill%
-    {\color{color2}\itshape\enclname: \@enclosure}}}
+    {\color{color1}\itshape\enclname: \@enclosure}}}
 
 
 \endinput

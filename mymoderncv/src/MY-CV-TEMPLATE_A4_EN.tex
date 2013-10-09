@@ -35,9 +35,13 @@
 % 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 \documentclass[11pt,a4paper,sans]{mymoderncv}
 
+\usepackage[spanish,english,french,german]{babel}
+% Date will be language-dependent
+\usepackage[nodayofweek]{datetime}
+
 % my moderncv themes
 % style options are 'casual' (default), 'classic', 'oldstyle', 'banking',
-% 'bankingalt' and 'nngstyle'
+% 'bankingalt' and 'custom'
 \mymoderncvstyle{classic}
 % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey',
 % and 'pinegreen'
@@ -201,5 +205,14 @@ Detailed achievements:
 %\bibliographystylemisc{plain}
 % 'publications' is the name of a BibTeX file
 %\bibliographymisc{publications}
+
+\begin{flushright}
+\vspace{5em}
+\selectlanguage{english}
+%\selectlanguage{german}
+%\selectlanguage{french}
+%\selectlanguage{spanish}
+City, Country - \today
+\end{flushright}
 %\clearpage
 \end{document}

@@ -304,7 +304,7 @@
   % sender contact info
   \hspace{0pt}%
   \marginpar{%
-    \addressfont\textcolor{color2}{%
+    \addressfont\textcolor{color1}{%
       {\bfseries\@firstname~\@lastname}\@firstdetailselementfalse%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
         \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
@@ -326,7 +326,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfill%
-    {\color{color2}\itshape\enclname: \@enclosure}}}
+    {\color{color1}\itshape\enclname: \@enclosure}}}
 
 
 \endinput
