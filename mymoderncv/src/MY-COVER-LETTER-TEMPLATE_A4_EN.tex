@@ -33,16 +33,16 @@
 % possible options include font size ('10pt', '11pt' and '12pt'), paper size
 % ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and
 % 'landscape') and font family ('sans' and 'roman')
-\documentclass[11pt,a4paper,sans]{mymoderncv}
+\documentclass[11pt,a4paper,sans,spanish]{mymoderncv}
 
-\usepackage[spanish,english,french,german]{babel}
+\usepackage[english,french,german,spanish]{babel}
 % Date will be language-dependent
 \usepackage[nodayofweek]{datetime}
 
 % mymoderncv themes
 % style options are 'casual' (default), 'classic', 'oldstyle', 'banking',
 % 'bankingalt', 'custom'
-\mymoderncvstyle{bankingalt}
+\mymoderncvstyle{casual}
 % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey',
 % and 'black'
 \mymoderncvcolor{blue}
@@ -59,7 +59,8 @@
 %\usepackage{CJKutf8}%
 
 % adjust the page margins
-\usepackage[scale=0.75]{geometry}
+%\usepackage[scale=0.75]{geometry}
+\usepackage[top=2cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 % if you want to change the width of the column with the dates
 %\setlength{\hintscolumnwidth}{3cm}%
 % for the 'classic' style, if you want to force the width allocated to your
@@ -80,8 +81,8 @@
 % optional, remove / comment the line if not wanted; the optional "type" of the
 % phone can be "mobile" (default), "fixed" or "fax"
 \phone[mobile]{+1~(234)~567~890}%
-\phone[fixed]{+2~(345)~678~901}
-\phone[fax]{+3~(456)~789~012}
+\phone[fixed]{+2~(345)~678~901}%
+\phone[fax]{+3~(456)~789~012}%
 % optional, remove / comment the line if not wanted
 \email{john@doe.org}%
 % optional, remove / comment the line if not wanted
@@ -97,7 +98,7 @@
 % optional, remove / comment the line if not wanted; '64pt' is the height the
 % picture must be resized to, 0.4pt is the thickness of the frame around it
 % (put it to 0pt for no frame) and 'picture' is the name of the picture file
-\photo[64pt][0.4pt]{picture}%
+\photo[64pt][0.4pt]{placeholder.png}%
 % optional, remove / comment the line if not wanted
 \quote{Some quote}%
 

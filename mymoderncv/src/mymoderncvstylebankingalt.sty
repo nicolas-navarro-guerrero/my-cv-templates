@@ -312,7 +312,31 @@
   % recompute lengths (in case we are switching from letter to resume, or vice versa)
   \recomputeletterlengths%
   % sender block
-  \maketitle%
+  \par\smallskip\noindent
+  \centerline{%
+  \begin{minipage}{0.8\textwidth}%
+    \centering
+    % name and title
+    \namestyle{\@firstname~\@lastname}\\[6pt]%
+    % \isundefined doesn't work on \@title, as LaTeX itself defines \@title
+    % (before it possibly gets redefined by \title)
+    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{\@title}}\\
+    \addressfont\textcolor{color1}{%
+      \ifthenelse{\isundefined{\@addressstreet}}{}{\addresssymbol\@addressstreet}%
+      % if \addresstreet is defined, \addresscity and \addresscountry will
+      % always be defined but could be empty
+      \ifthenelse{\equal{\@addresscity}{}}{}{,~\@addresscity}%
+      \ifthenelse{\equal{\@addresscountry}{}}{}{,~\@addresscountry}%
+      % the key holds the phone type (=symbol command prefix), the item holds the number
+      \collectionloop{phones}{%
+         \phantom{ }\textbullet\phantom{ }\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
+      \ifthenelse{\isundefined{\@email}}{}{ \phantom{ }\textbullet\phantom{ }\emailsymbol\emaillink{\@email}}%
+      \ifthenelse{\isundefined{\@homepage}}{}{ \phantom{ }\textbullet\phantom{ }\homepagesymbol\httplink{\@homepage}}%
+      % the key holds the social type (=symbol command prefix), the item holds the link
+      \collectionloop{socials}{%
+         \phantom{ }\textbullet\phantom{ }\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
+      \ifthenelse{\isundefined{\@extrainfo}}{}{ \phantom{ }\textbullet\phantom{ }\@extrainfo}}%
+  \end{minipage}}\\[2.5em]
   \par%
    % recipient block
   \begin{minipage}[t]{.5\textwidth}

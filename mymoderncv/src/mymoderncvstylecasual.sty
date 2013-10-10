@@ -175,25 +175,26 @@
   \setlength{\footerwidth}{0.8\textwidth}%
   \fancypagestyle{plain}{%
     \fancyfoot[c]{%
-      \parbox[b]{\footerwidth}{%
+      \begin{minipage}{\footerwidth}%
         \centering%
-        \addressfont\color{color1}%
-        \vspace{\baselineskip}% forces a white line to ensure space between main text and footer (as footer height can't be known in advance)
-        \vspace{-\baselineskip}% to cancel out the extra vertical space taken by the name (below) and ensure perfect alignment of letter and cv footers
-        \strut{\bfseries\upshape\@firstname~\@lastname}\\% the \strut is required to ensure the line is exactly \baselineskip tall
-        \ifthenelse{\isundefined{\@addressstreet}}{}{\addtofooter[]{\addresssymbol\@addressstreet}%
-          \ifthenelse{\equal{\@addresscity}{}}{}{\addtofooter[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
-          \ifthenelse{\equal{\@addresscountry}{}}{}{\addtofooter[~--~]{\@addresscountry}}%
-          \flushfooter\@firstfooterelementtrue\\}%
-        \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
-          \addtofooter{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
-        \ifthenelse{\isundefined{\@email}}{}{\addtofooter{\emailsymbol\emaillink{\@email}}}%
-        \ifthenelse{\isundefined{\@homepage}}{}{\addtofooter{\homepagesymbol\httplink{\@homepage}}}%
-        \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-          \addtofooter{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
-        \ifthenelse{\isundefined{\@extrainfo}}{}{\addtofooter{\@extrainfo}}%
-        \ifthenelse{\lengthtest{\footerboxwidth=0pt}}{}{\flushfooter}% the lengthtest is required to avoid flushing an empty footer, which could cause a blank line due to the \\ after the address, if no other personal info is used
-        }}}%
+        % name and title
+        \strut{\bfseries\upshape\@firstname~\@lastname}\\%
+        \addressfont\textcolor{color1}{%
+        \ifthenelse{\isundefined{\@addressstreet}}{}{\addresssymbol\@addressstreet}%
+        % if \addresstreet is defined, \addresscity and \addresscountry will
+        % always be defined but could be empty
+        \ifthenelse{\equal{\@addresscity}{}}{}{,~\@addresscity}%
+        \ifthenelse{\equal{\@addresscountry}{}}{}{,~\@addresscountry}%
+        % the key holds the phone type (=symbol command prefix), the item holds the number
+        \collectionloop{phones}{%
+          \phantom{ }\textbullet\phantom{ }\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
+        \ifthenelse{\isundefined{\@email}}{}{ \phantom{ }\textbullet\phantom{ }\emailsymbol\emaillink{\@email}}%
+        \ifthenelse{\isundefined{\@homepage}}{}{ \phantom{ }\textbullet\phantom{ }\homepagesymbol\httplink{\@homepage}}%
+        % the key holds the social type (=symbol command prefix), the item holds the link
+        \collectionloop{socials}{%
+          \phantom{ }\textbullet\phantom{ }\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
+        \ifthenelse{\isundefined{\@extrainfo}}{}{ \phantom{ }\textbullet\phantom{ }\@extrainfo}}%
+      \end{minipage}}}%
   \pagestyle{plain}}
 
 \renewcommand*{\makeletterclosing}{
@@ -204,7 +205,6 @@
     \vfil%
     {\color{color1}\itshape\enclname: \@enclosure}}%
     \vfil}
-
 
 \endinput
 
