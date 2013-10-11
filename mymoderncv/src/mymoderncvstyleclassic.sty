@@ -314,20 +314,23 @@
   \recomputeletterlengths%
   % sender contact info
   \hfill%
-  \begin{minipage}{.5\textwidth}%
+  \begin{minipage}{.8\textwidth}%
     \raggedleft%
     \addressfont\textcolor{color1}{%
       {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
-        \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
+        % if \addresstreet is defined, \addresscity and addresscountry will
+        % always be defined but could be empty
+        \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}%
         \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
-      \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+      % the key holds the phone type (=symbol command prefix), the item holds the number
+      \collectionloop{phones}{%
         \makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
       \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
       \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
       \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}%
-    \end{minipage}\\[1em]
-  % recipient block
+  \end{minipage}\\[1em]
+  % recipient contact info
   \begin{minipage}[t]{.5\textwidth}
     \raggedright%
     \addressfont%
@@ -338,6 +341,9 @@
   \hfill% US style
 %  \\[1em]% UK style
   \@date\\[2em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  \ifthenelse{\isundefined{\@heading}}%
+  {}%
+  {\centering{\Large\bfseries\@heading}\\[2.0em]}%
   % opening
   \raggedright%
   \@opening\\[1.5em]%
@@ -352,7 +358,6 @@
     \\%
     \vfill%
     {\color{color1}\itshape\enclname: \@enclosure}}}
-
 
 \endinput
 
