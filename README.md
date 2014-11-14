@@ -1,35 +1,30 @@
 # My CV Templates
 
 Version: 0.1  
-Copyright (C) 2013 Nicolas Navarro-Guerrero  
+Copyright (C) 2013-2014 [Nicolas Navarro-Guerrero](https://nicolas-navarro-guerrero.github.io/)  
 Contact:  nicolas.navarro.guerrero@gmail.com  
 
-      https://github.com/nicolas-navarro-guerrero  
-      http://www.linkedin.com/in/nicolasnavarroguerrero
+      https://github.com/nicolas-navarro-guerrero
+      https://bitbucket.org/nicolas-navarro-guerrero
+      https://nicolas-navarro-guerrero.github.io/
 
-============================================================
+***********************************************************
 ### Overview ###
-my personal collection of curriculum vitae template in _.tex_ and _.doc_
+template for curriculum vitae and cover letter in _.tex_ and _.doc_
 
-==============================
-#### File structure: ####
-
-
-============================================================
-### Build the library - Compile ###
-
-==============================
+***********************************************************
 #### System Requirements - Tested on: ####
-Tested on linux: Ubuntu 13.04 64 bits in Texmaker
+Tested on linux Ubuntu 14.04 64 bits with Texmaker
 
-============================================================
-### How to use it (usage) ###
- - Download
- - modify _MYCVTEMPLATE_A4_EN.tex_
+***********************************************************
+#### How to use it (usage) ###
+ - download
+ - modify `MY-CV-TEMPLATE_A4_EN.tex`
+ - modify `MY-COVER-LETTER-TEMPLATE_A4_EN.tex`
    - Style and colour options in the preamble
  - compile
 
-============================================================
+***********************************************************
 ### LICENSE:
 This collection of curriculum vitae templates are part of my pesonal collection
 called "My CV Templates". They all are free software: you can redistribute it and/or
@@ -45,13 +40,12 @@ Public License for more details.
 You should have received a copy of the GNU General Public License
 along with "My CV Templates". If not, see http://www.gnu.org/licenses/.
 
-============================================================
+***********************************************************
 ### Distribution of the documentation:
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/.  
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Unported License. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/.  
 
-============================================================
+***********************************************************
 ### References:
-
 > Xavier Danaux  
   "moderncv – A modern curriculum vitae class"  
   [http://www.ctan.org/pkg/moderncv](http://www.ctan.org/pkg/moderncv)  
