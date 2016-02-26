@@ -1,0 +1,20 @@
+# exclude everything
+/*
+
+# except directory foo/bar
+!/TODO.md
+!/README.md
+!/LICENSE
+!/.gitignore
+
+!/mymoderncv
+!/mymoderncv/documentation
+!/mymoderncv/examples
+!/mymoderncv/CHANGELOG
+!/mymoderncv/KNOWN_BUGS
+/mymoderncv/src/build/*
+!/mymoderncv/src/*.tex
+!/mymoderncv/src/*.bib
+!/mymoderncv/src/*.sty
+!/mymoderncv/src/*.cls
+
