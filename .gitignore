@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # exclude everything
 /*
 
@@ -18,3 +19,10 @@
 !/mymoderncv/src/*.sty
 !/mymoderncv/src/*.cls
 
+=======
+*.[oa]
+*~
+*.bak
+src/build
+.directory
+>>>>>>> 0ea126a716286eb2fbebbc7768ec85c53d2ade4c

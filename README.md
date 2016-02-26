@@ -1,7 +1,7 @@
 # My CV Templates
 
 Version: 0.1  
-Copyright (C) 2013 [Nicolas Navarro-Guerrero](https://nicolas-navarro-guerrero.github.io)  
+Copyright (C) 2013-2016 [Nicolas Navarro-Guerrero](https://nicolas-navarro-guerrero.github.io)  
 Contact:  nicolas.navarro.guerrero@gmail.com  
 
       https://github.com/nicolas-navarro-guerrero
@@ -21,12 +21,13 @@ my personal collection of curriculum vitae templates in _.tex_ and _.doc_
 
 ***********************************************************
 #### System Requirements - Tested on: ####
-Tested on linux Ubuntu 13.04 64 bits with Texmaker
+Tested on linux Ubuntu 14.04 64 bits with Texmaker
 
 ***********************************************************
 ### How to use it (usage) ###
  - Download
- - modify _MYCVTEMPLATE_A4_EN.tex_
+ - modify `MY-CV-TEMPLATE_A4_EN.tex`
+ - modify `MY-COVER-LETTER-TEMPLATE_A4_EN.tex`
    - Style and colour options in the preamble
  - compile
 
@@ -48,7 +49,7 @@ along with "My CV Templates". If not, see http://www.gnu.org/licenses/.
 
 ***********************************************************
 ### Distribution of the documentation:
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/3.0/.  
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Unported License. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/.  
 
 ***********************************************************
 ### References:
